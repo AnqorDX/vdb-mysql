@@ -20,12 +20,6 @@ func main() {
 	}, app.DriverAPI())
 	app.UseDriver(driver)
 
-	// Wire the built-in MySQL credential probe at priority 50.
-	// This is the composition-root step required by the authentication design:
-	// the driver provides the PointFunc but cannot attach it to the pipeline
-	// itself because it has no reference to app.
-	app.Attach("vdb.connection.auth.verify", 50, driver.AuthHandler())
-
 	if err := app.Run(); err != nil {
 		log.Fatalf("vdb-mysql: %v", err)
 	}
