@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*.*.*'
 
+env:
+  GONOSUMDB: github.com/AnqorDX/*
+
 jobs:
   test:
     name: Test
